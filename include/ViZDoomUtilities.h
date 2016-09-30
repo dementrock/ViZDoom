@@ -50,6 +50,9 @@ namespace vizdoom {
      * Returns true if button is delta button.
      */
     bool isDeltaButton(Button button);
+
+    std::string timestamp();
+
 }
 
 #endif
