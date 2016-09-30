@@ -43,9 +43,9 @@ namespace vizdoom {
     }
 
     bool DoomGamePython::init() {
-        std::cout << "initializing doom game" << std::endl;
+        std::cout << timestamp() << "initializing doom game" << std::endl;
         bool initSuccess = DoomGame::init();
-        std::cout << "initialized doom game" << std::endl;
+        std::cout << timestamp() << "initialized doom game" << std::endl;
 
         if (initSuccess) {
             int channels = this->getScreenChannels();
