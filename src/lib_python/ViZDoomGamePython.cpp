@@ -21,6 +21,7 @@
 */
 
 #include "ViZDoomGamePython.h"
+#include "ViZDoomUtilities.h"
 
 namespace vizdoom {
 
