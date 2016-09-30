@@ -22,6 +22,7 @@
 
 #include "ViZDoomController.h"
 #include "ViZDoomExceptions.h"
+#include "ViZDoomUtilities.h"
 #include "boost/process.hpp"
 
 #include <boost/algorithm/string.hpp>
