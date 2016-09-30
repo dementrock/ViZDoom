@@ -80,7 +80,9 @@ namespace vizdoom {
             }
 
             try {
+                std::cout << "initializing doom controller" << std::endl;
                 this->running = this->doomController->init();
+                std::cout << "initialized doom controller" << std::endl;
 
                 this->doomController->disableAllButtons();
                 for (unsigned int i = 0; i < this->availableButtons.size(); ++i) {

@@ -138,25 +138,35 @@ namespace vizdoom {
         if (!this->doomRunning) {
 
             try{
+                std::cout << "generating instance id" << std::endl;
                 this->generateInstanceId();
+                std::cout << "initializing MQ" << std::endl;
                 this->MQInit();
 
+                std::cout << "creating signal thread" << std::endl;
                 this->signalThread = new b::thread(b::bind(&DoomController::handleSignals, this));
 
                 this->createDoomArgs();
+                std::cout << "creating doom thread" << std::endl;
                 this->doomThread = new b::thread(b::bind(&DoomController::launchDoom, this));
+                std::cout << "waiting for doom to start" << std::endl;
                 this->waitForDoomStart();
 
+                std::cout << "initializing SM" << std::endl;
                 this->SMInit();
 
                 if(this->gameState->VERSION != VIZDOOM_LIB_VERSION){
                     throw ViZDoomMismatchedVersionException(std::string(this->gameState->VERSION_STR), VIZDOOM_LIB_VERSION_STR);
                 }
 
+                std::cout << "waiting for doom map start time" << std::endl;
                 this->waitForDoomMapStartTime();
 
+                std::cout << "send doom update message" << std::endl;
                 this->MQDoomSend(MSG_CODE_UPDATE);
+                std::cout << "waiting for doom work" << std::endl;
                 this->waitForDoomWork();
+                std::cout << "init finished!" << std::endl;
 
                 *this->input = *this->_input;
 
