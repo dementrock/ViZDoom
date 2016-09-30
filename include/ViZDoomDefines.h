@@ -24,6 +24,7 @@
 #define __VIZDOOM_DEFINES_H__
 
 #include <vector>
+#include <string>
 
 namespace vizdoom{
 
