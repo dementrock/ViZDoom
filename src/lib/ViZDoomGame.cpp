@@ -103,6 +103,7 @@ namespace vizdoom {
             }
             catch(...){ throw; }
 
+            std::cout << timestamp() << "returning running state" << std::endl;
             return running;
         }
         else return false;
