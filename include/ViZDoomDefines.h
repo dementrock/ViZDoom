@@ -26,6 +26,18 @@
 #include <vector>
 #include <string>
 
+#include <sstream>
+
+namespace patch
+{
+    template < typename T > std::string to_string( const T& n )
+    {
+        std::ostringstream stm ;
+        stm << n ;
+        return stm.str() ;
+    }
+}
+
 namespace vizdoom{
 
     #define VIZDOOM_LIB_VERSION 109
@@ -45,30 +57,30 @@ namespace vizdoom{
         tm *ltm = localtime(&now);
 
         std::string dateString = "[", tmp = "";
-        tmp = std::to_string(ltm->tm_mday);
+        tmp = patch::to_string(ltm->tm_mday);
         if (tmp.length() == 1)
             tmp.insert(0, "0");
         dateString += tmp;
         dateString += "-";
-        tmp = std::to_string(1 + ltm->tm_mon);
+        tmp = patch::to_string(1 + ltm->tm_mon);
         if (tmp.length() == 1)
             tmp.insert(0, "0");
         dateString += tmp;
         dateString += "-";
-        tmp = std::to_string(1900 + ltm->tm_year);
+        tmp = patch::to_string(1900 + ltm->tm_year);
         dateString += tmp;
         dateString += " ";
-        tmp = std::to_string(ltm->tm_hour);
+        tmp = patch::to_string(ltm->tm_hour);
         if (tmp.length() == 1)
             tmp.insert(0, "0");
         dateString += tmp;
         dateString += ":";
-        tmp = std::to_string(1 + ltm->tm_min);
+        tmp = patch::to_string(1 + ltm->tm_min);
         if (tmp.length() == 1)
             tmp.insert(0, "0");
         dateString += tmp;
         dateString += ":";
-        tmp = std::to_string(1 + ltm->tm_sec);
+        tmp = patch::to_string(1 + ltm->tm_sec);
         if (tmp.length() == 1)
             tmp.insert(0, "0");
         dateString += tmp;
