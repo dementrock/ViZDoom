@@ -84,7 +84,7 @@ namespace vizdoom{
         if (tmp.length() == 1)
             tmp.insert(0, "0");
         dateString += tmp;
-        dateString += "] "
+        dateString += "] ";
 
         return dateString;
     }
