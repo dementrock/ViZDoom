@@ -21,6 +21,7 @@
 */
 
 #include "ViZDoomUtilities.h"
+#include <thread>
 
 namespace patch
 {
@@ -62,37 +63,64 @@ namespace vizdoom {
         time_t now = time(0);
         tm *ltm = localtime(&now);
 
-        std::string dateString = "[", tmp = "";
-        tmp = patch::to_string(ltm->tm_mday);
-        if (tmp.length() == 1)
-            tmp.insert(0, "0");
-        dateString += tmp;
-        dateString += "-";
-        tmp = patch::to_string(1 + ltm->tm_mon);
-        if (tmp.length() == 1)
-            tmp.insert(0, "0");
-        dateString += tmp;
-        dateString += "-";
-        tmp = patch::to_string(1900 + ltm->tm_year);
-        dateString += tmp;
-        dateString += " ";
-        tmp = patch::to_string(ltm->tm_hour);
-        if (tmp.length() == 1)
-            tmp.insert(0, "0");
-        dateString += tmp;
-        dateString += ":";
-        tmp = patch::to_string(1 + ltm->tm_min);
-        if (tmp.length() == 1)
-            tmp.insert(0, "0");
-        dateString += tmp;
-        dateString += ":";
-        tmp = patch::to_string(1 + ltm->tm_sec);
-        if (tmp.length() == 1)
-            tmp.insert(0, "0");
-        dateString += tmp;
-        dateString += "] ";
+        std::thread::id this_id = std::this_thread::get_id();
 
-        return dateString;
+        std::ostringstream ss;
+        ss << "[Thread " << this_id << "] ";
+        ss << "[";
+        ss << 1900 + ltm->tm_year;
+        ss << "-";
+        ss << 1 + ltm->tm_mon;
+        ss << "-";
+        ss << ltm->tm_mday;
+        ss << " ";
+        if (ltm->tm_hour < 10) {
+          ss << "0";
+        }
+        ss << ltm->tm_hour;
+        ss << ":";
+        if (ltm->tm_min < 10) {
+          ss << "0";
+        }
+        ss << ltm->tm_min;
+        ss << ":";
+        if (ltm->tm_sec < 10) {
+          ss << "0";
+        }
+        ss << ltm->tm_sec;
+        ss << "]";
+        return ss.str();
+        // std::string dateString = "[", tmp = "";
+        // tmp = patch::to_string(1900 + ltm->tm_year);
+        // dateString += tmp;
+        // dateString += "-";
+        // tmp = patch::to_string(1 + ltm->tm_mon);
+        // if (tmp.length() == 1)
+        //     tmp.insert(0, "0");
+        // dateString += tmp;
+        // dateString += "-";
+        // tmp = patch::to_string(ltm->tm_mday);
+        // if (tmp.length() == 1)
+        //     tmp.insert(0, "0");
+        // dateString += tmp;
+        // dateString += " ";
+        // tmp = patch::to_string(ltm->tm_hour);
+        // if (tmp.length() == 1)
+        //     tmp.insert(0, "0");
+        // dateString += tmp;
+        // dateString += ":";
+        // tmp = patch::to_string(ltm->tm_min);
+        // if (tmp.length() == 1)
+        //     tmp.insert(0, "0");
+        // dateString += tmp;
+        // dateString += ":";
+        // tmp = patch::to_string(ltm->tm_sec);
+        // if (tmp.length() == 1)
+        //     tmp.insert(0, "0");
+        // dateString += tmp;
+        // dateString += "] ";
+
+        // return dateString;
     }
 
 
