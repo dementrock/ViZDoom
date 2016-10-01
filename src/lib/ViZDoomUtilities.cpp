@@ -88,7 +88,7 @@ namespace vizdoom {
           ss << "0";
         }
         ss << ltm->tm_sec;
-        ss << "]";
+        ss << "] ";
         return ss.str();
         // std::string dateString = "[", tmp = "";
         // tmp = patch::to_string(1900 + ltm->tm_year);

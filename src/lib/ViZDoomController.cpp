@@ -141,6 +141,7 @@ namespace vizdoom {
             try{
                 std::cout << timestamp() << "generating instance id" << std::endl;
                 this->generateInstanceId();
+                std::cout << timestamp() << "Instance Id: " << this->instanceId << std::endl;
                 std::cout << timestamp() << "initializing MQ" << std::endl;
                 this->MQInit();
 
@@ -881,7 +882,9 @@ namespace vizdoom {
         unsigned int priority;
         bip::message_queue::size_type recv_size;
 
+        std::cout << timestamp() << "waiting for MQ message" << std::endl;
         this->MQControllerRecv(&msg, recv_size, priority);
+        std::cout << timestamp() << "MQ message received" << std::endl;
         switch (msg.code) {
             case MSG_CODE_DOOM_DONE :
                 this->doomRunning = true;
