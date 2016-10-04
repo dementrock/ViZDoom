@@ -5,6 +5,7 @@ option(BUILD_PYTHON "Build ViZDoom Python binding." OFF)
 option(BUILD_PYTHON3 "Build ViZDoom Python3 binding instead of default Python2." OFF)
 option(BUILD_JAVA "Build ViZDoom Java binding." OFF)
 
+SET(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11")
 
 if(COMMAND cmake_policy)
 	cmake_policy(SET CMP0003 NEW)
