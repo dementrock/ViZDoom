@@ -34,6 +34,8 @@
 #include <cstdio>
 #include <cstdlib>
 #include <ctime>
+#include <sys/syscall.h>
+
 
 namespace vizdoom {
 
@@ -833,7 +835,10 @@ namespace vizdoom {
 
         br::uniform_int_distribution<> charDist(0, chars.length() - 1);
         br::mt19937 rng;
-        rng.seed((unsigned int)bc::high_resolution_clock::now().time_since_epoch().count());
+
+        unsigned int time_since_epoch = (unsigned int)bc::high_resolution_clock::now().time_since_epoch().count();
+        unsigned int thread_id = (unsigned int)syscall( __NR_gettid );
+        rng.seed(time_since_epoch + thread_id);
 
         for (int i = 0; i < INSTANCE_ID_LENGHT; ++i) {
             this->instanceId += chars[charDist(rng)];
