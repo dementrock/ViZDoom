@@ -598,7 +598,7 @@ namespace vizdoom {
         this->weapon = weapon;
         if (this->doomRunning) {
             if (this->weapon) this->sendCommand("r_drawplayersprites 1");
-            else this->sendCommand("r_drawplayersprites 1");
+            else this->sendCommand("r_drawplayersprites 0");
         }
     }
 
