@@ -40,6 +40,8 @@ namespace vizdoom {
         DoomGame();
         virtual ~DoomGame();
 
+        DoomController* getController() { return this->doomController; }
+
 
         /* Flow Control */
         /*------------------------------------------------------------------------------------------------------------*/
