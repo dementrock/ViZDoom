@@ -350,6 +350,7 @@ namespace vizdoom {
     void DoomGame::setDoomGamePath(std::string path) { this->doomController->setIwadPath(path); }
     void DoomGame::setDoomScenarioPath(std::string path) { this->doomController->setFilePath(path); }
     void DoomGame::setDoomMap(std::string map) { this->doomController->setMap(map); }
+    std::string DoomGame::getDoomMap() { return this->doomController->getMap(); }
     void DoomGame::setDoomSkill(int skill) { this->doomController->setSkill(skill); }
     void DoomGame::setDoomConfigPath(std::string path) { this->doomController->setConfigPath(path); }
 

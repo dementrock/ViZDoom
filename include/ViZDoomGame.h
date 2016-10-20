@@ -330,6 +330,8 @@ namespace vizdoom {
          */
         void setDoomMap(std::string map);
 
+        std::string getDoomMap();
+
         /*
          * Sets Doom game difficulty level which is called `skill' in Doom.
          * The higher is the skill the harder the game becomes.
